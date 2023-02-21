@@ -1,8 +1,9 @@
 let question = document.getElementById("question");
-let choice = document.querySelector("#choice");
+let choiceButton = document.querySelector("#choice");
 let startButton = document.getElementById("startbutton")
 let questionContainer = document.getElementById("questioncontainer");
 let nextButton = document.getElementById("nextbutton");
+let timerDisplay = document.getElementById("timer");
 let x = 0;
 let score = 0;
 let totalTime = 400;
@@ -15,7 +16,7 @@ let questions = [
     {
         question: "The = sign is what type of operator?",
         choices: [
-           { text: "Boolean", type: true },
+            { text: "Boolean", type: true },
             { text: "Assignment", type: false },
             { text: "String", type: false },
             { text: "Interger", type: false },
@@ -24,17 +25,17 @@ let questions = [
 
     {
         question: "What HTML tag is used to link JavaScript to the HTML?",
-        options: [
+        choices: [
             { text: "Script", type: true },
             { text: "Link", type: false },
-            { text: "Div", type: false},
-            { text: "Body", type: false},
+            { text: "Div", type: false },
+            { text: "Body", type: false },
         ]
     },
 
     {
         question: "Arrays are always indexed with which beginning number?",
-        options: [
+        choices: [
             { text: "0", type: true },
             { text: "1", type: false },
             { text: "2", type: false },
@@ -44,7 +45,7 @@ let questions = [
 
     {
         question: "A useful tool for printing information to the console, and for debugging is?",
-        options: [
+        choices: [
             { text: "console.log", type: true },
             { text: "Hello.world", type: false },
             { text: "print", type: false },
@@ -64,15 +65,17 @@ function startQuiz() {
     startButton.classList.add("hide");
     questionContainer.classList.remove("hide")
     displayQuestion();
+    timer();
 };
 
 function displayQuestion() {
     let currentQuestion = questions[x];
     question.innerText = currentQuestion.question;
-    question.choices.forEach(choice => {
+    currentQuestion.choices.forEach(choices => {
         let button = document.createElement("button")
-        button.innerText = choice.text
+        button.innerText = choices.text
         button.classList.add("button")
+        choices.appendChild(button);
     })
 };
 
@@ -87,8 +90,11 @@ function resetButtons() {
 };
 
 function timer() {
-    
-}
+    let totalTime = 400;
+    let timeLeft = totalTime;
+    timerDisplay.textContent = timeLeft; 
+};
 
 startButton.addEventListener("click", startQuiz);
 nextButton.addEventListener("click", nextQuestion);
+choiceButton.addEventListener("click", selectChoice)
