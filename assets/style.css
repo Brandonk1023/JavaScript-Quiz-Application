@@ -10,7 +10,7 @@ html {
     background-color: blueviolet;
 };
 
-.question-container {
+.questioncontainer {
     display: flex;
     flex-direction: column;
     background-color: gray;
@@ -28,3 +28,7 @@ html {
 .startbutton {
 
 };
+
+.hide {
+    display: none;
+}
