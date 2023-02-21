@@ -56,44 +56,70 @@ let questions = [
 
 ];
 
-//for (x = 0; x < questions.length;) {
-//    x++;
-//};
-
 function startQuiz() {
     console.log("Started");
-    startButton.classList.add("hide");
-    questionContainer.classList.remove("hide")
     displayQuestion();
     timer();
+    startButton.classList.add("hide");
+    question.classList.remove("hide");
+    choiceButton.classList.remove("hide");
+    nextButton.classList.remove("hide");
 };
 
 function displayQuestion() {
     let currentQuestion = questions[x];
     question.innerText = currentQuestion.question;
-    currentQuestion.choices.forEach(choices => {
+    choiceButton.innerHTML = "";
+    currentQuestion.choices.forEach(choice => {
         let button = document.createElement("button")
-        button.innerText = choices.text
+        button.innerText = choice.text
         button.classList.add("button")
-        choices.appendChild(button);
+        button.dataset.type = choice.type
+        choiceButton.appendChild(button);
     })
 };
 
 function nextQuestion() {
+    if (x <= question.length - 1) {
+        x++;
+        displayQuestion();
+    } else {
+        finishQuiz();
+    }
 };
 
 function selectChoice() {
+    let choiceType = this.dataset.type;
+    if (choiceType === "true") {
+        score += 1;
+    }
+
 };
 
 function resetButtons() {
     nextButton.classList.add("hide");
+    question.classList.add("hide");
+    choiceButton.classList.add("hide");
+    startButton.classList.remove("hide");
 };
 
 function timer() {
-    let totalTime = 400;
-    let timeLeft = totalTime;
-    timerDisplay.textContent = timeLeft; 
+    let interval = setInterval(function() {
+        if (timeLeft <= 0) {
+            clearInterval(interval);
+            finishQuiz();
+        } else {
+            timerDisplay.textContent = timeLeft;
+            timeLeft -= 1;
+        }
+    }, 1000);
 };
+
+function deduction() {
+    if (type === false) {
+        timeLeft -= 100;
+    }
+}
 
 startButton.addEventListener("click", startQuiz);
 nextButton.addEventListener("click", nextQuestion);
