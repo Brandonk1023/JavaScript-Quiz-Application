@@ -8,6 +8,8 @@ let x = 0;
 let score = 0;
 let totalTime = 400;
 let timeLeft = totalTime;
+let UserScores = []
+let UserNames = []
 
 
 
@@ -119,6 +121,10 @@ function deduction() {
     if (type === false) {
         timeLeft -= 100;
     }
+}
+
+function finishQuiz () {
+    resetButtons();
 }
 
 startButton.addEventListener("click", startQuiz);

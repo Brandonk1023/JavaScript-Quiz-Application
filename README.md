@@ -23,6 +23,9 @@ To use this application,  simply launch the application through the link in your
 
 Click on the answer of your choice.  If the answer is incorrect you will have time deducted from the timer.  Once the quiz is completed you will receive your score and will be able to add it to the highscore table to view.
 
+![opening](assets/images/Openning Screen.jpg)
+
+![quiz](assets/images/Quiz Screen.jpg)
 
 ## Credits
 
