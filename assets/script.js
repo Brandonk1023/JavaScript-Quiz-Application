@@ -1,8 +1,8 @@
+
 let question = document.getElementById("question");
 let choiceButton = document.querySelector("#choice");
 let startButton = document.getElementById("startbutton")
 let questionContainer = document.getElementById("questioncontainer");
-let nextButton = document.getElementById("nextbutton");
 let timerDisplay = document.getElementById("timer");
 let x = 0;
 let score = 0;
@@ -10,6 +10,7 @@ let totalTime = 400;
 let timeLeft = totalTime;
 let UserScores = []
 let UserNames = []
+let currentQuestion = []
 
 
 
@@ -65,18 +66,19 @@ function startQuiz() {
     startButton.classList.add("hide");
     question.classList.remove("hide");
     choiceButton.classList.remove("hide");
-    nextButton.classList.remove("hide");
 };
 
 function displayQuestion() {
-    let currentQuestion = questions[x];
+    currentQuestion = questions[x];
     question.innerText = currentQuestion.question;
     choiceButton.innerHTML = "";
     currentQuestion.choices.forEach(choice => {
+        console.log(choice, 'CHOICE')
         let button = document.createElement("button")
         button.innerText = choice.text
         button.classList.add("button")
         button.dataset.type = choice.type
+        console.log(button, 'BUTTON TAG')
         choiceButton.appendChild(button);
     })
 };
@@ -88,14 +90,16 @@ function nextQuestion() {
     } else {
         finishQuiz();
     }
-};
+}
 
-function selectChoice() {
-    let choiceType = this.dataset.type;
+function selectChoice(event) {
+    let choiceType = event.target.dataset.type
+    console.log(choiceType);
     if (choiceType === "true") {
-        score += 1;
+        score += 25;
+    } else {
+        timeLeft -= 100;
     }
-
 };
 
 function resetButtons() {
@@ -106,7 +110,7 @@ function resetButtons() {
 };
 
 function timer() {
-    let interval = setInterval(function() {
+    let interval = setInterval(function () {
         if (timeLeft <= 0) {
             clearInterval(interval);
             finishQuiz();
@@ -117,16 +121,10 @@ function timer() {
     }, 1000);
 };
 
-function deduction() {
-    if (type === false) {
-        timeLeft -= 100;
-    }
-}
 
-function finishQuiz () {
+function finishQuiz() {
     resetButtons();
 }
 
 startButton.addEventListener("click", startQuiz);
-nextButton.addEventListener("click", nextQuestion);
 choiceButton.addEventListener("click", selectChoice)
