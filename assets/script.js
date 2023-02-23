@@ -10,6 +10,7 @@ let totalTime = 400;
 let timeLeft = totalTime;
 let UserScores = []
 let UserNames = []
+let currentQuestion = []
 
 
 
@@ -58,7 +59,7 @@ let questions = [
 
 ];
 
-function startQuiz() {
+const startQuiz = () => {
     console.log("Started");
     displayQuestion();
     timer();
@@ -69,14 +70,16 @@ function startQuiz() {
 };
 
 function displayQuestion() {
-    let currentQuestion = questions[x];
+    currentQuestion = questions[x];
     question.innerText = currentQuestion.question;
     choiceButton.innerHTML = "";
     currentQuestion.choices.forEach(choice => {
+        console.log(choice, 'CHOICE')
         let button = document.createElement("button")
         button.innerText = choice.text
         button.classList.add("button")
         button.dataset.type = choice.type
+        console.log(button, 'BUTTON TAG')
         choiceButton.appendChild(button);
     })
 };
@@ -88,13 +91,17 @@ function nextQuestion() {
     } else {
         finishQuiz();
     }
-};
+}
 
-function selectChoice() {
-    let choiceType = this.dataset.type;
+const selectChoice = (event) => {
+    let choiceType = event.target.dataset.type
     if (choiceType === "true") {
         score += 1;
+    } else {
+        timeLeft -= 100;
     }
+
+    // choiceType === "true" ? score += 1 : timeLeft -= 100
 
 };
 
@@ -106,7 +113,7 @@ function resetButtons() {
 };
 
 function timer() {
-    let interval = setInterval(function() {
+    let interval = setInterval(function () {
         if (timeLeft <= 0) {
             clearInterval(interval);
             finishQuiz();
@@ -123,7 +130,7 @@ function deduction() {
     }
 }
 
-function finishQuiz () {
+function finishQuiz() {
     resetButtons();
 }
 
