@@ -19,8 +19,8 @@ let questions = [
     {
         question: "The = sign is what type of operator?",
         choices: [
-            { text: "Boolean", type: true },
-            { text: "Assignment", type: false },
+            { text: "Assignment", type: true },
+            { text: "Boolean", type: false },
             { text: "String", type: false },
             { text: "Interger", type: false },
         ]
@@ -57,16 +57,15 @@ let questions = [
         ]
     }
 
-];
+]
 
 function startQuiz() {
-    console.log("Started");
     displayQuestion();
     timer();
     startButton.classList.add("hide");
     question.classList.remove("hide");
     choiceButton.classList.remove("hide");
-};
+}
 
 function displayQuestion() {
     currentQuestion = questions[x];
@@ -81,15 +80,10 @@ function displayQuestion() {
         console.log(button, 'BUTTON TAG')
         choiceButton.appendChild(button);
     })
-};
+}
 
 function nextQuestion() {
-    if (x <= question.length - 1) {
-        x++;
-        displayQuestion();
-    } else {
-        finishQuiz();
-    }
+    displayQuestion();
 }
 
 function selectChoice(event) {
@@ -97,17 +91,22 @@ function selectChoice(event) {
     console.log(choiceType);
     if (choiceType === "true") {
         score += 25;
+        x++;
+        console.log(score, x, "SCORE and X value");
+        console.log(currentQuestion);
+        displayQuestion();
     } else {
         timeLeft -= 100;
+        x++;
+        displayQuestion();
     }
-};
+}
 
 function resetButtons() {
-    nextButton.classList.add("hide");
     question.classList.add("hide");
     choiceButton.classList.add("hide");
     startButton.classList.remove("hide");
-};
+}
 
 function timer() {
     let interval = setInterval(function () {
@@ -119,7 +118,7 @@ function timer() {
             timeLeft -= 1;
         }
     }, 1000);
-};
+}
 
 
 function finishQuiz() {
