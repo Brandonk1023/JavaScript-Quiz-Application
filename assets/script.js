@@ -5,6 +5,7 @@ let startButton = document.getElementById("startbutton")
 let questionContainer = document.getElementById("questioncontainer");
 let timerDisplay = document.getElementById("timer");
 let scoreButton = document.getElementById("scorebutton")
+let scoreContainter = document.getElementById("scorecontainer")
 let x = 0;
 let score = 0;
 let totalTime = 400;
@@ -68,7 +69,7 @@ function startQuiz() {
     question.classList.remove("hide");
     choiceButton.classList.remove("hide");
     timerDisplay.classList.remove("hide");
-    
+
 }
 
 function displayQuestion() {
@@ -76,12 +77,10 @@ function displayQuestion() {
     question.innerText = currentQuestion.question;
     choiceButton.innerHTML = "";
     currentQuestion.choices.forEach(choice => {
-        console.log(choice, 'CHOICE')
         let button = document.createElement("button")
         button.innerText = choice.text
         button.classList.add("button")
         button.dataset.type = choice.type
-        console.log(button, 'BUTTON TAG')
         choiceButton.appendChild(button);
     })
 }
@@ -92,16 +91,13 @@ function nextQuestion() {
 
 function selectChoice(event) {
     let choiceType = event.target.dataset.type
-    console.log(choiceType);
     if (choiceType === "true") {
         score += 25;
-       if (x < 3) {
-        x++;
-       } else {
-        return
-       }
-        console.log(score, x, "SCORE and X value");
-        console.log(currentQuestion);
+        if (x < 3) {
+            x++;
+        } else {
+            return
+        }
         displayQuestion();
     } else {
         timeLeft -= 100;
@@ -134,7 +130,7 @@ function timer() {
 }
 
 function showScores() {
-
+    scoreContainter.classList.remove("hide");
 }
 
 function finishQuiz() {
