@@ -62,7 +62,6 @@ let questions = [
 ]
 
 function startQuiz() {
-    totalTime = 400;
     displayQuestion();
     timer();
     startButton.classList.add("hide");
@@ -83,10 +82,6 @@ function displayQuestion() {
         button.dataset.type = choice.type
         choiceButton.appendChild(button);
     })
-}
-
-function nextQuestion() {
-    displayQuestion();
 }
 
 function selectChoice(event) {
@@ -118,6 +113,7 @@ function resetButtons() {
 }
 
 function timer() {
+    totalTime = 400;
     let interval = setInterval(function () {
         if (timeLeft <= 0) {
             clearInterval(interval);
@@ -135,7 +131,6 @@ function showScores() {
 
 function finishQuiz() {
     resetButtons();
-    totalTime = 400;
 }
 
 startButton.addEventListener("click", startQuiz);
