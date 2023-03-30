@@ -4,6 +4,7 @@ let choiceButton = document.querySelector("#choice");
 let startButton = document.getElementById("startbutton")
 let questionContainer = document.getElementById("questioncontainer");
 let timerDisplay = document.getElementById("timer");
+let scoreButton = document.getElementById("scorebutton")
 let x = 0;
 let score = 0;
 let totalTime = 400;
@@ -60,11 +61,14 @@ let questions = [
 ]
 
 function startQuiz() {
+    totalTime = 400;
     displayQuestion();
     timer();
     startButton.classList.add("hide");
     question.classList.remove("hide");
     choiceButton.classList.remove("hide");
+    timerDisplay.classList.remove("hide");
+    
 }
 
 function displayQuestion() {
@@ -91,13 +95,21 @@ function selectChoice(event) {
     console.log(choiceType);
     if (choiceType === "true") {
         score += 25;
+       if (x < 3) {
         x++;
+       } else {
+        return
+       }
         console.log(score, x, "SCORE and X value");
         console.log(currentQuestion);
         displayQuestion();
     } else {
         timeLeft -= 100;
-        x++;
+        if (x < 3) {
+            x++;
+        } else {
+            return
+        }
         displayQuestion();
     }
 }
@@ -106,6 +118,7 @@ function resetButtons() {
     question.classList.add("hide");
     choiceButton.classList.add("hide");
     startButton.classList.remove("hide");
+    timerDisplay.classList.add("hide");
 }
 
 function timer() {
@@ -120,10 +133,15 @@ function timer() {
     }, 1000);
 }
 
+function showScores() {
+
+}
 
 function finishQuiz() {
     resetButtons();
+    totalTime = 400;
 }
 
 startButton.addEventListener("click", startQuiz);
 choiceButton.addEventListener("click", selectChoice)
+scoreButton.addEventListener("click", showScores)
