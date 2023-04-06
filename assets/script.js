@@ -10,7 +10,7 @@ let x = 0;
 let score = 0;
 let totalTime = 400;
 let timeLeft = totalTime;
-let UserScores = []
+let userScores = []
 let currentQuestion = []
 let userName = ""
 let userInfo = {
@@ -128,12 +128,15 @@ function timer() {
 }
 
 function showScores() {
+    localStorage.getItem(userScores, JSON.parse(scoreInfo))
     scoreContainter.classList.remove("hide");
 }
 
 function finishQuiz() {
     document.userInfo.score = score
     document.userInfo.name = userName
+    UserScores.unshift(userScores)
+localStorage.setItem(scoreInfo, JSON.stringify(userScores))
     resetButtons();
 }
 

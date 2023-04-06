@@ -29,6 +29,11 @@ Click on the answer of your choice.  If the answer is incorrect you will have ti
 
 ## Credits
 
+JavaScript Array Documentation:
+https://www.w3schools.com/jsref/jsref_obj_array.asp
+
+JavaScript API Storage Documentation:
+https://www.w3schools.com/jsref/api_storage.asp
 
 
 ## License
