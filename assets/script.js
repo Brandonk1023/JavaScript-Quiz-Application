@@ -11,10 +11,12 @@ let score = 0;
 let totalTime = 400;
 let timeLeft = totalTime;
 let UserScores = []
-let UserNames = []
 let currentQuestion = []
-
-
+let userName = ""
+let userInfo = {
+    name: "",
+    score: "",
+}
 
 
 let questions = [
@@ -130,6 +132,8 @@ function showScores() {
 }
 
 function finishQuiz() {
+    document.userInfo.score = score
+    document.userInfo.name = userName
     resetButtons();
 }
 
