@@ -1,15 +1,16 @@
 
-let question = document.getElementById("question");
-let choiceButton = document.querySelector("#choice");
+let question = document.getElementById("question")
+let choiceButton = document.querySelector("#choice")
 let startButton = document.getElementById("startbutton")
-let questionContainer = document.getElementById("questioncontainer");
-let timerDisplay = document.getElementById("timer");
+let questionContainer = document.getElementById("questioncontainer")
+let userScoreList = document.getElementById("userScore")
+let timerDisplay = document.getElementById("timer")
 let scoreButton = document.getElementById("scorebutton")
 let scoreContainter = document.getElementById("scorecontainer")
-let x = 0;
-let score = 0;
-let totalTime = 400;
-let timeLeft = totalTime;
+let x = 0
+let score = 0
+let totalTime = 400
+let timeLeft = totalTime
 let userScores = []
 let currentQuestion = []
 let userName = ""
@@ -127,9 +128,15 @@ function timer() {
     }, 1000);
 }
 
+
+
 function showScores() {
     localStorage.getItem(userScores, JSON.parse(scoreInfo))
     scoreContainter.classList.remove("hide");
+    scoreInfo.forEach(user => {
+        let userRank = document.createElement("div")
+        div.innerText = "Name: "  + user.name + "Score: " +  user.score
+    })
 }
 
 function finishQuiz() {
