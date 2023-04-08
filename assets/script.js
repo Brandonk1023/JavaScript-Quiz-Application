@@ -13,7 +13,7 @@ let totalTime = 400
 let timeLeft = totalTime
 let userScores = []
 let currentQuestion = []
-let userName = ""
+let userName = document.getElementById("nameInput").value
 let userInfo = {
     name: "",
     score: "",
