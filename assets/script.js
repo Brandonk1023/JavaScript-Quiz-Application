@@ -6,7 +6,7 @@ let questionContainer = document.getElementById("questioncontainer")
 let userScoreList = document.getElementById("userScore")
 let timerDisplay = document.getElementById("timer")
 let scoreButton = document.getElementById("scorebutton")
-let scoreContainter = document.getElementById("scorecontainer")
+let scoreContainer = document.getElementById("scorecontainer")
 let x = 0
 let score = 0
 let totalTime = 400
@@ -136,6 +136,7 @@ function showScores() {
     scoreInfo.forEach(user => {
         let userRank = document.createElement("div")
         div.innerText = "Name: "  + user.name + "Score: " +  user.score
+        scoreContainer.appendChild(div)
     })
 }
 
